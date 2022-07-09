@@ -1,10 +1,12 @@
 <template>
   <div class="home">
-    <PullRefresh class="PullRefresh">
-      <NavBarMin class="NavBarMins" />
-      <SwiperMin class="swiper" :dataSwiper="dataSwiper" />
-      <p>刷新次数: {{ count }}</p>
-    </PullRefresh>
+    <NavBarMin class="NavBarMins" />
+    <div class="vh">
+      <PullRefresh class="PullRefresh">
+        <SwiperMin class="swiper" :dataSwiper="dataSwiper" />
+        <p v-for="index in 1000" :key="index">111111</p>
+      </PullRefresh>
+    </div>
   </div>
 </template>
 
@@ -39,15 +41,15 @@ export default {
 </script>
 
 <style scoped>
-.home {
-  position: absolute;
-  top: 1.1733rem;
-  width: 100vw;
-  height: calc(100vh - 1.1733rem - 1.3067rem);
-  background-color: rgb(243, 226, 229);
+.NavBarMins {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 9;
 }
-
-.PullRefresh {
-  height: 100%;
+.vh {
+  position: absolute;
+  width: 100%;
+  top: 1.1733rem;
 }
 </style>

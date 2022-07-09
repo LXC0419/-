@@ -23,7 +23,7 @@ export default {
       setTimeout(() => {
         Toast("刷新成功");
         loading.value = false;
-        count.value++;
+        // count.value++;
       }, 1000);
     };
 

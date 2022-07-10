@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import TabBar_btn from "../common/TabBar-btn.vue";
-import TabBar from "../common/TabBar.vue";
+import TabBar_btn from "../../common/TabBar-btn.vue";
+import TabBar from "../../common/TabBar.vue";
 export default {
   mame: "TabBar_btn",
   components: {

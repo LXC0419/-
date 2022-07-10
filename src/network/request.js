@@ -8,3 +8,11 @@ export function requestA(config) {
 
   return axiosA(config)
 }
+
+export function requestB(config) {
+  const axiosB = axios.create({
+    baseURL: 'http://152.136.185.210:7878/api/hy66'
+  })
+
+  return axiosB(config)
+}

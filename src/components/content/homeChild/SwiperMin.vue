@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Swiper from "../common/Swiper.vue";
+import Swiper from "../../common/Swiper.vue";
 export default {
   name: "SwiperMin",
   props: {
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     SwiperClick(item) {
-      location.push(item.link);
+      location.assign(item.link);
     },
   },
 };

@@ -1,12 +1,16 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
     <TabBarMinVue />
   </div>
 </template>
 
 <script>
-import TabBarMinVue from "./components/content/TabBarMin.vue";
+import TabBarMinVue from "./components/content/homeChild/TabBarMin.vue";
 export default {
   name: "App",
   components: {

@@ -16,7 +16,7 @@ export default {
       type: Object,
     },
   },
-  mounted() {
+  updated() {
     this.$nextTick(function () {
       this.getTop();
     });

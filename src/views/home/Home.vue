@@ -81,7 +81,7 @@ export default {
   methods: {
     handleScroll() {
       //获取滚动时的高度
-      // console.log(document.documentElement.scrollTop);
+      console.log(document.documentElement.scrollTop);
     },
     // 获取轮播图数据
     getHomeSwipers() {

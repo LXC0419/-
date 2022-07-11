@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" ref="home">
     <NavBarMin class="NavBarMins" />
     <div class="vh">
       <PullRefresh class="PullRefresh">
@@ -13,10 +13,9 @@
             @optClick="optClick"
           />
         </Vant_Sticky>
-
-        <Shopping :homeData="homeData[currentType]" @topScoll="topScoll" />
-        <button @click="getDatas('pop')">233</button>
+        <Shopping :homeData="homeData[currentType]" />
       </PullRefresh>
+      <div class="bottom" ref="bottom"></div>
     </div>
   </div>
 </template>
@@ -64,7 +63,8 @@ export default {
         sell: { page: 0, list: [] },
       },
       currentType: "pop",
-      topNum: null,
+      topNum: 0,
+      topNums: 0,
     };
   },
   created() {
@@ -76,12 +76,19 @@ export default {
   mounted() {
     // 添加滚动监听事件
     window.addEventListener("scroll", this.handleScroll);
-    this.pullUptada();
   },
   methods: {
     handleScroll() {
       //获取滚动时的高度
-      console.log(document.documentElement.scrollTop);
+      // console.log(document.documentElement.scrollTop + window.innerHeight);
+      // console.log(this.$refs.bottom.offsetTop);
+      // 下拉刷新
+      const a = document.documentElement.scrollTop + window.innerHeight;
+      const b = this.$refs.bottom.offsetTop;
+      this.topNums = document.documentElement.scrollTop;
+      if (a > b) {
+        this.getDatas(this.currentType);
+      }
     },
     // 获取轮播图数据
     getHomeSwipers() {
@@ -112,22 +119,17 @@ export default {
           this.currentType = "sell";
           break;
       }
-      console.log(idx);
-    },
-    // 获取最后一个小li距离顶部的距离
-    topScoll(top) {
-      this.topNum = top;
-      console.log(this.topNum);
-    },
-    // 下拉刷新
-    pullUptada() {
-      // console.log(this.topNum);
     },
   },
   computed: {},
-  /*   destroyed() {
-    document.removeEventListener("scroll", this.handleScroll);
-  }, */
+  // 当前页面活动时赋值滚动高度
+  activated() {
+    document.documentElement.scrollTop = this.topNum;
+  },
+  // 当前页面离开时获取当前滚动高度
+  deactivated() {
+    this.topNum = this.topNums;
+  },
 };
 </script>
 

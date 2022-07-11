@@ -21,7 +21,7 @@ export default {
 
 <style scoped>
 .Shopping {
-  margin-top: 0.2667rem;
+  /* margin-top: 0.2667rem; */
 }
 .Shopping ul {
   display: flex;

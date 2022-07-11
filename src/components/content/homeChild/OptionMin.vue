@@ -38,7 +38,7 @@ export default {
 
 <style scoped>
 .fx {
-  padding: 0.2133rem 0.1333rem 0;
+  padding: 0.2133rem 0.1333rem;
   flex: 1;
   text-align: center;
   font-size: 0.64rem;

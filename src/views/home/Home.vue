@@ -6,11 +6,14 @@
         <SwiperMin class="swiper" :dataSwiper="dataSwiper" />
         <Recommend :recommend="recommend" />
         <DayLike />
-        <OptionMin
-          class="HoptionMin"
-          :optionData="optionData"
-          @optClick="optClick"
-        />
+        <Vant_Sticky class="Hsticky">
+          <OptionMin
+            class="HoptionMin"
+            :optionData="optionData"
+            @optClick="optClick"
+          />
+        </Vant_Sticky>
+
         <Shopping :homeData="homeData[currentType]" />
         <button @click="getDatas('pop')">233</button>
       </PullRefresh>
@@ -21,6 +24,8 @@
 <script>
 // 引入轮数据
 import { getHomeSwiper, getHomeData } from "../../network/nethome";
+// 引入vant Sticky的插件
+import Vant_Sticky from "@/components/common/Vant_Sticky.vue";
 // 引入标题栏
 import NavBarMin from "@/components/content/homeChild/NavBarMin.vue";
 // 引入轮播图
@@ -46,6 +51,7 @@ export default {
     DayLike,
     OptionMin,
     Shopping,
+    Vant_Sticky,
   },
   data() {
     return {
@@ -126,10 +132,8 @@ export default {
   width: 100%;
   top: 1.1733rem;
 }
+
 .HoptionMin {
-  position: sticky;
-  top: 100px;
-  /* width: 100%; */
-  /* background-color: rgb(255, 255, 255); */
+  background-color: rgb(255, 255, 255);
 }
 </style>

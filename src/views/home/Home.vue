@@ -14,7 +14,7 @@
           />
         </Vant_Sticky>
 
-        <Shopping :homeData="homeData[currentType]" />
+        <Shopping :homeData="homeData[currentType]" @topScoll="topScoll" />
         <button @click="getDatas('pop')">233</button>
       </PullRefresh>
     </div>
@@ -64,6 +64,7 @@ export default {
         sell: { page: 0, list: [] },
       },
       currentType: "pop",
+      topNum: null,
     };
   },
   created() {
@@ -75,6 +76,7 @@ export default {
   mounted() {
     // 添加滚动监听事件
     window.addEventListener("scroll", this.handleScroll);
+    this.pullUptada();
   },
   methods: {
     handleScroll() {
@@ -111,6 +113,15 @@ export default {
           break;
       }
       console.log(idx);
+    },
+    // 获取最后一个小li距离顶部的距离
+    topScoll(top) {
+      this.topNum = top;
+      console.log(this.topNum);
+    },
+    // 下拉刷新
+    pullUptada() {
+      // console.log(this.topNum);
     },
   },
   computed: {},

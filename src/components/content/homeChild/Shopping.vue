@@ -16,6 +16,19 @@ export default {
       type: Object,
     },
   },
+  mounted() {
+    this.$nextTick(function () {
+      this.getTop();
+    });
+  },
+  methods: {
+    getTop() {
+      let topLi = document.querySelectorAll("li");
+      let li = topLi[topLi.length - 1];
+      const scrtop = li.offsetTop + li.offsetHeight;
+      this.$emit("topScoll", scrtop);
+    },
+  },
 };
 </script>
 

@@ -14,6 +14,11 @@
           />
         </Vant_Sticky>
         <Shopping :homeData="homeData[currentType]" />
+        <PinMap
+          class="PinMap"
+          :style="{ display: isPinMap }"
+          @topClick="topClick"
+        />
       </PullRefresh>
       <div class="bottom" ref="bottom"></div>
     </div>
@@ -39,6 +44,8 @@ import DayLike from "@/components/content/homeChild/DayLike.vue";
 import OptionMin from "@/components/content/homeChild/OptionMin.vue";
 // 引入商品
 import Shopping from "@/components/content/homeChild/Shopping.vue";
+// 引入置顶图标
+import PinMap from "@/components/common/PinMap.vue";
 
 export default {
   name: "Home",
@@ -51,6 +58,7 @@ export default {
     OptionMin,
     Shopping,
     Vant_Sticky,
+    PinMap,
   },
   data() {
     return {
@@ -65,6 +73,7 @@ export default {
       currentType: "pop",
       topNum: 0,
       topNums: 0,
+      isPinMap: "none",
     };
   },
   created() {
@@ -80,14 +89,19 @@ export default {
   methods: {
     handleScroll() {
       //获取滚动时的高度
-      // console.log(document.documentElement.scrollTop + window.innerHeight);
-      // console.log(this.$refs.bottom.offsetTop);
+
       // 下拉刷新
       const a = document.documentElement.scrollTop + window.innerHeight;
       const b = this.$refs.bottom.offsetTop;
       this.topNums = document.documentElement.scrollTop;
       if (a > b) {
         this.getDatas(this.currentType);
+      }
+      // 显示隐藏置顶图标
+      if (this.topNums > 530) {
+        this.isPinMap = "block";
+      } else {
+        this.isPinMap = "none";
       }
     },
     // 获取轮播图数据
@@ -104,7 +118,6 @@ export default {
       getHomeData(type, page).then((res) => {
         this.homeData[type].list.push(...res.data.data.list);
         this.homeData[type].page += 1;
-        // console.log(this.homeData);
       });
     },
     optClick(idx) {
@@ -119,6 +132,15 @@ export default {
           this.currentType = "sell";
           break;
       }
+    },
+    // 点击置顶图标时回到顶部
+    topClick() {
+      setInterval(() => {}, 1);
+      // document.documentElement.scrollTop = 0;
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     },
   },
   computed: {},
@@ -148,5 +170,10 @@ export default {
 
 .HoptionMin {
   background-color: rgb(255, 255, 255);
+}
+.PinMap {
+  position: fixed;
+  top: 520px;
+  right: 10px;
 }
 </style>

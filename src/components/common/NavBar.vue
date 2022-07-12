@@ -17,15 +17,16 @@ export default {};
   align-items: center;
 }
 .NavBar_btn1 {
-  flex: 2.5;
+  flex: 2;
   text-align: center;
 }
 .NavBar_btn2 {
-  flex: 5;
+  flex: 6;
+  font-size: 0.5333rem;
   text-align: center;
 }
 .NavBar_btn3 {
-  flex: 2.5;
+  flex: 2;
   text-align: center;
 }
 </style>

@@ -1,8 +1,12 @@
 <template>
   <div class="Shopping">
     <ul>
-      <li v-for="item in homeData.list" :key="item">
-        <div class="shImg"><img :src="item.show.img" alt="" /></div>
+      <li v-for="item in homeData.list" :key="item" @click="jumpClick(item)">
+        <div class="shImg"><img :src="item.show.img" /></div>
+        <div class="title">{{ item.title }}</div>
+        <div class="price">
+          <span>{{ item.price }}</span> <span>{{ item.orgPrice }}</span>
+        </div>
       </li>
     </ul>
   </div>
@@ -14,6 +18,11 @@ export default {
   props: {
     homeData: {
       type: Object,
+    },
+  },
+  methods: {
+    jumpClick(item) {
+      this.$router.push("/detail/" + item.iid);
     },
   },
 };
@@ -37,5 +46,21 @@ export default {
 }
 .shImg img {
   width: 100%;
+}
+.price span:first-child {
+  font-size: 0.48rem;
+  color: rgb(237, 108, 108);
+}
+.price span:last-child {
+  text-decoration: line-through;
+  font-size: 0.3733rem;
+}
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 0.32rem;
 }
 </style>

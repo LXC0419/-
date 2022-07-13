@@ -12,7 +12,7 @@
       </div>
     </div>
     <div v-for="(item, index) in apparel.detailImage[0].list" :key="index">
-      <img :src="item" alt="" />
+      <img :src="item" alt="" @load="imgLoad" />
     </div>
   </div>
 </template>
@@ -23,12 +23,21 @@ export default {
   props: ["apparel"],
   updated() {
     this.getScrollKeyss1();
+    // this.loadimgs(this.getScrollKeyss1);
     // console.log(this.apparel);
   },
   methods: {
     getScrollKeyss1() {
-      const scrollTop = document.querySelector(".keyss1").offsetTop;
+      const scrollTop =
+        document.querySelector(".descss").offsetTop ||
+        document.querySelector(".keyss1").offsetTop;
       this.$emit("getAscrollTop", scrollTop);
+    },
+
+    // 图片加载事件
+    imgLoad() {
+      // console.log("555555");
+      this.$emit("apparelimgLoad");
     },
   },
 };
@@ -36,6 +45,7 @@ export default {
 
 <style scoped>
 .descss {
+  padding-top: 1.1733rem;
   font-size: 0.32rem;
   color: rgb(85, 85, 85);
 }

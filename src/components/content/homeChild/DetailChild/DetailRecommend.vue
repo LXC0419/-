@@ -19,7 +19,7 @@ export default {
   methods: {
     getrecommendTop() {
       this.scrollTop = document.querySelector(".recommend").offsetTop;
-      console.log(this.scrollTop, "454");
+      // console.log(this.scrollTop, "454");
       this.$emit("recommendTop", this.scrollTop);
     },
   },

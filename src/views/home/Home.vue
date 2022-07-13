@@ -89,6 +89,9 @@ export default {
     // 添加滚动监听事件
     window.addEventListener("scroll", this.handleScroll);
   },
+  beforeRouteLeave() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
   methods: {
     handleScroll() {
       //获取滚动时的高度
@@ -169,6 +172,7 @@ export default {
   position: absolute;
   width: 100%;
   top: 1.1733rem;
+  z-index: -2;
 }
 
 .HoptionMin {

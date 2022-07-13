@@ -37,13 +37,16 @@ export default {
   },
   methods: {
     itemClick(index) {
-      console.log(this.Navidx);
+      // console.log(this.Navidx);
       this.$emit("itemClick", index);
     },
     backClick() {
       // this.$router.back();
       this.$router.go(-1);
     },
+  },
+  created() {
+    // this.Navidx = 0;
   },
   computed() {},
 };

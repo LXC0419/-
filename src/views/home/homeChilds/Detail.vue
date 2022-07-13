@@ -8,8 +8,13 @@
       ref="Dapparel"
       :apparel="apparel"
       @getAscrollTop="getAscrollTop"
+      @apparelimgLoad="apparelimgLoad"
     />
-    <DatailComments @commentTop="commentTop" class="Dcomments" />
+    <DatailComments
+      :loadimgs="loadimgs"
+      @commentTop="commentTop"
+      class="Dcomments"
+    />
     <DetailRecommend @recommendTop="recommendTop" class="Drecommend" />
   </div>
 </template>
@@ -55,6 +60,8 @@ export default {
       Navidx: 0,
       commentSclTop: 0,
       recommendSclTop: 0,
+      isOnceIndex: true,
+      loadimgs: Function,
     };
   },
   created() {
@@ -63,11 +70,17 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.getScroll);
+    document.documentElement.scrollTop = 0;
+  },
+  updated() {
+    if (this.isOnceIndex) {
+      this.Navidx = 0;
+      this.isOnceIndex = false;
+    }
   },
   unmounted() {
     window.removeEventListener("scroll", this.getScroll);
   },
-  updated() {},
   methods: {
     // 获取详情页的数据
     getDetail() {
@@ -102,7 +115,14 @@ export default {
       } else if (topScroll >= this.apparelSclTop) {
         this.Navidx = 1;
       }
-      console.log("--------------------");
+    },
+    // apparel模块的图片加载事件 ----------------------------------
+    apparelimgLoad() {
+      console.log("===========");
+      let loadimg = function loadimgs(lodimg) {
+        lodimg();
+      };
+      this.loadimgs = loadimg;
     },
     // 获取参数模块的偏移量
     getAscrollTop(ofTop) {
@@ -120,8 +140,8 @@ export default {
     },
     // nav模块点击传输事件
     itemClick(index) {
-      console.log(index, "dd");
-      this.Navidx = index;
+      // console.log(index, "dd");
+      // this.Navidx = index;
       switch (index) {
         case 0:
           // document.documentElement.scrollTop = 0;
@@ -173,5 +193,8 @@ export default {
 }
 .Drecommend {
   padding-top: 1.3333rem;
+}
+.detail {
+  background-color: #fff;
 }
 </style>

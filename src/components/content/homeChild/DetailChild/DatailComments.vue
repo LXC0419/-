@@ -6,6 +6,11 @@
 
 <script>
 export default {
+  props: {
+    loadimgs: {
+      type: Function,
+    },
+  },
   data() {
     return {
       scrollTop: 0,
@@ -20,7 +25,6 @@ export default {
     getDcommentTop() {
       this.scrollTop = document.querySelector(".Dcomment").offsetTop;
       this.$emit("commentTop", this.scrollTop);
-      // console.log(this.scrollTop, "444");
     },
   },
 };

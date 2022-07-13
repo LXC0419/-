@@ -11,7 +11,7 @@
             v-for="(item, index) in navItems"
             :key="item"
             @click="itemClick(index)"
-            :class="{ navstyle: count == index }"
+            :class="{ navstyle: Navidx == index }"
           >
             {{ item }}
           </div>
@@ -25,6 +25,7 @@
 import Navbar from "../../../common/NavBar.vue";
 
 export default {
+  props: ["Navidx"],
   components: {
     Navbar,
   },
@@ -36,7 +37,8 @@ export default {
   },
   methods: {
     itemClick(index) {
-      this.count = index;
+      console.log(this.Navidx);
+      this.$emit("itemClick", index);
     },
     backClick() {
       // this.$router.back();

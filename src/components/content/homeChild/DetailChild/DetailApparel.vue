@@ -3,7 +3,7 @@
     <div class="descss">
       {{ apparel.desc }}
     </div>
-    <div class="keyss" v-for="item in apparel.detailImage" :key="item">
+    <div class="keyss keyss1" v-for="item in apparel.detailImage" :key="item">
       {{ item.key }}
     </div>
     <div class="keyss" v-for="item in apparel.detailImage" :key="item">
@@ -21,8 +21,15 @@
 export default {
   name: "DetailApparel",
   props: ["apparel"],
-  mounted() {
+  updated() {
+    this.getScrollKeyss1();
     // console.log(this.apparel);
+  },
+  methods: {
+    getScrollKeyss1() {
+      const scrollTop = document.querySelector(".keyss1").offsetTop;
+      this.$emit("getAscrollTop", scrollTop);
+    },
   },
 };
 </script>
@@ -33,7 +40,7 @@ export default {
   color: rgb(85, 85, 85);
 }
 .keyss {
-  margin-top: 0.5333rem;
+  padding-top: 0.5333rem;
   color: rgb(83, 83, 83);
 }
 img {

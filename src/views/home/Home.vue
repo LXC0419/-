@@ -13,7 +13,10 @@
             @optClick="optClick"
           />
         </Vant_Sticky>
-        <Shopping :homeData="homeData[currentType]" />
+        <Shopping
+          :homeData="homeData[currentType]"
+          v-if="homeData.pop.list && homeData.new.list && homeData.sell.list"
+        />
         <PinMap
           class="PinMap"
           :style="{ display: isPinMap }"

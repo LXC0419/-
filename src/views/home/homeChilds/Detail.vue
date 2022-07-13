@@ -102,6 +102,7 @@ export default {
       } else if (topScroll >= this.apparelSclTop) {
         this.Navidx = 1;
       }
+      console.log("--------------------");
     },
     // 获取参数模块的偏移量
     getAscrollTop(ofTop) {

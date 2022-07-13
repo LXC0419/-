@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <DetailNav class="detailNav" />
+  <div ref="Detail" class="detail">
+    <DetailNav class="detailNav" ref="Dnav" />
     <DetailSWiper :imgSwiper="imgSwiper" />
     <DatailBaseInfo :datas="datas" />
-    <!-- <DetailShopInfo :shopInfo="shopInfo" /> -->
+    <DetailShopInfo :shopInfo="shopInfo" />
+    <DetailApparel ref="Dapparel" :apparel="apparel" />
   </div>
 </template>
 
@@ -19,7 +20,8 @@ import DetailNav from "@/components/content/homeChild/DetailChild/DetailNav.vue"
 import DetailSWiper from "@/components/content/homeChild/DetailChild/DetailSwiper.vue";
 // 引入基本信息
 import DatailBaseInfo from "@/components/content/homeChild/DetailChild/DetailBaseInfo.vue";
-// import DetailShopInfo from "@/components/content/homeChild/DetailChild/DetailShopInfo.vue";
+import DetailShopInfo from "@/components/content/homeChild/DetailChild/DetailShopInfo.vue";
+import DetailApparel from "@/components/content/homeChild/DetailChild/DetailApparel.vue";
 
 export default {
   name: "Detail",
@@ -27,7 +29,8 @@ export default {
     DetailNav,
     DetailSWiper,
     DatailBaseInfo,
-    // DetailShopInfo,
+    DetailShopInfo,
+    DetailApparel,
   },
   data() {
     return {
@@ -41,6 +44,9 @@ export default {
   created() {
     this.getIid();
     this.getDetail();
+  },
+  mounted() {
+    window.addEventListener("scroll", this.getScroll);
   },
   methods: {
     // 获取详情页的数据
@@ -62,6 +68,10 @@ export default {
     // 获取id值
     getIid() {
       this.id = this.$route.params.id;
+    },
+    // 获取滚动距离
+    getScroll() {
+      console.log(document.documentElement.scrollTop);
     },
   },
 };

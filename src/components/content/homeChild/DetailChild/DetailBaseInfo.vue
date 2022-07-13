@@ -1,16 +1,15 @@
 <template>
   <div>
-    <div class="Dtopic">
+    <div class="Dtopic" v-if="datas.services">
       <div class="Dtitle">{{ datas.title }}</div>
       <div>
         <span class="Dprice">{{ datas.newPrice }}</span>
         <span class="DoldPrice">{{ datas.oldPrice }}</span>
         <span class="Ddiscount">{{ datas.discount }}</span>
       </div>
-
       <div class="columns">
-        <span>{{ datas.columns }}</span>
-        <span>{{ datas.columns }}</span>
+        <span>{{ datas.columns[0] }}</span>
+        <span>{{ datas.columns[1] }}</span>
         <span>{{ datas.services[datas.services.length - 1].name }}</span>
       </div>
       <div class="services">
@@ -31,9 +30,18 @@
 
 <script>
 export default {
-  props: ["datas"],
+  props: {
+    datas: {
+      type: Object,
+      default() {
+        return {
+          columns: [],
+        };
+      },
+    },
+  },
   mounted() {
-    console.log(this.datas);
+    // console.log(this.datas);
   },
 };
 </script>
@@ -88,5 +96,11 @@ export default {
 .services img {
   width: 0.4267rem;
   vertical-align: top;
+}
+.services span {
+  font-size: 0.4267rem;
+}
+.columns {
+  font-size: 0.4267rem;
 }
 </style>

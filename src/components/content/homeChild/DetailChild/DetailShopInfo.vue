@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div class="dShopInfo">
     <div class="ShTop">
       <img :src="shopInfo.shopLogo" alt="" /><span>{{ shopInfo.name }}</span>
@@ -48,8 +48,8 @@ export default {
 };
 </script>
 
-<style scoped> -->
-.ShTop {
+<style scoped>
+-- > .ShTop {
   padding: 0 0.2667rem;
   height: 2.6667rem;
   line-height: 100px;
@@ -116,6 +116,7 @@ export default {
 .entrance span {
   padding: 0.1333rem 40px;
   border-radius: 0.2133rem;
+  font-size: 0.64rem;
   background-color: #eee;
 }
 </style>

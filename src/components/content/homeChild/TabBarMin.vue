@@ -70,6 +70,8 @@ export default {
   padding-top: 0.08rem;
   bottom: 0;
   font-size: 0.3733rem;
+  /* z-index: -1; */
+  /* background-color: #fff; */
 }
 
 .ic_fs {

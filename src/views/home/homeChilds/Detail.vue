@@ -8,10 +8,9 @@
       ref="Dapparel"
       :apparel="apparel"
       @getAscrollTop="getAscrollTop"
-      @apparelimgLoad="apparelimgLoad"
     />
     <DatailComments
-      :loadimgs="loadimgs"
+      :isImgLod="isImgLod"
       @commentTop="commentTop"
       class="Dcomments"
     />
@@ -61,7 +60,6 @@ export default {
       commentSclTop: 0,
       recommendSclTop: 0,
       isOnceIndex: true,
-      loadimgs: Function,
     };
   },
   created() {
@@ -116,14 +114,7 @@ export default {
         this.Navidx = 1;
       }
     },
-    // apparel模块的图片加载事件 ----------------------------------
-    apparelimgLoad() {
-      console.log("===========");
-      let loadimg = function loadimgs(lodimg) {
-        lodimg();
-      };
-      this.loadimgs = loadimg;
-    },
+
     // 获取参数模块的偏移量
     getAscrollTop(ofTop) {
       this.apparelSclTop = ofTop;

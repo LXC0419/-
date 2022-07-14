@@ -5,21 +5,37 @@
 </template>
 
 <script>
+// 全局事件
+import Bus from "@/assets/js/eventHub";
 export default {
-  props: {
-    loadimgs: {
-      type: Function,
-    },
-  },
+  props: ["isImgLod"],
   data() {
     return {
       scrollTop: 0,
     };
   },
-  mounted() {
-    setTimeout(() => {
+
+  created() {
+    Bus.$on("apparelImgLod", () => {
       this.getDcommentTop();
-    }, 1000);
+    });
+  },
+  beforeDestroy() {
+    Bus.$off("apparelImgLod");
+  },
+  // watch: {
+  //   isImgLod(val) {
+  //     if (this.isImgLod) {
+  //       this.getDcommentTop();
+  //       this.loadimgs = false;
+  //     }
+  //   },
+  // },
+  mounted() {
+    this.getDcommentTop();
+    // setTimeout(() => {
+    //   this.getDcommentTop();
+    // }, 1000);
   },
   methods: {
     getDcommentTop() {

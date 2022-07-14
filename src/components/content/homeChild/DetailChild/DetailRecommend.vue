@@ -5,6 +5,8 @@
 </template>
 
 <script>
+// 全局总线
+import Bus from "@/assets/js/eventHub";
 export default {
   data() {
     return {
@@ -12,9 +14,15 @@ export default {
     };
   },
   mounted() {
-    setTimeout(() => {
+    Bus.$on("apparelImgLod", () => {
       this.getrecommendTop();
-    }, 1000);
+    });
+    // setTimeout(() => {
+    //   this.getrecommendTop();
+    // }, 1000);
+  },
+  beforeDestroy() {
+    Bus.$off("apparelImgLod");
   },
   methods: {
     getrecommendTop() {

@@ -18,9 +18,12 @@
 </template>
 
 <script>
+// 全局事件
+import Bus from "@/assets/js/eventHub";
 export default {
   name: "DetailApparel",
   props: ["apparel"],
+
   updated() {
     this.getScrollKeyss1();
     // this.loadimgs(this.getScrollKeyss1);
@@ -35,9 +38,11 @@ export default {
     },
 
     // 图片加载事件
+
     imgLoad() {
       // console.log("555555");
-      this.$emit("apparelimgLoad");
+      // this.$emit("apparelimgLoad");
+      Bus.$emit("apparelImgLod", new Date().getTime());
     },
   },
 };

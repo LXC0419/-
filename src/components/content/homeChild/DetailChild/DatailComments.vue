@@ -8,7 +8,6 @@
 // 全局事件
 import Bus from "@/assets/js/eventHub";
 export default {
-  props: ["isImgLod"],
   data() {
     return {
       scrollTop: 0,
@@ -20,7 +19,7 @@ export default {
       this.getDcommentTop();
     });
   },
-  beforeDestroy() {
+  beforeUnmount() {
     Bus.$off("apparelImgLod");
   },
   // watch: {

@@ -87,7 +87,11 @@ export default {
   },
   mounted() {
     // 添加滚动监听事件
-    window.addEventListener("scroll", this.handleScroll);
+  },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      window.addEventListener("scroll", vm.handleScroll);
+    });
   },
   beforeRouteLeave() {
     window.removeEventListener("scroll", this.handleScroll);

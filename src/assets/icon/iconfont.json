@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "330205",
+      "name": "单选按钮-选中",
+      "font_class": "ico1",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "330206",
+      "name": "单选按钮",
+      "font_class": "ico2",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "77031",
+      "name": "店铺",
+      "font_class": "dianpu",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "646359",
+      "name": "客户",
+      "font_class": "kehu",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "2674484",
+      "name": "收藏",
+      "font_class": "shoucang",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
       "icon_id": "2675443",
       "name": "置顶",
       "font_class": "zhiding",

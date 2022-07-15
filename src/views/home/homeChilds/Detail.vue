@@ -9,12 +9,9 @@
       :apparel="apparel"
       @getAscrollTop="getAscrollTop"
     />
-    <DatailComments
-      :isImgLod="isImgLod"
-      @commentTop="commentTop"
-      class="Dcomments"
-    />
+    <DatailComments @commentTop="commentTop" class="Dcomments" />
     <DetailRecommend @recommendTop="recommendTop" class="Drecommend" />
+    <DetailBottombar @addToCart="addToCart" />
   </div>
 </template>
 
@@ -36,6 +33,8 @@ import DetailApparel from "@/components/content/homeChild/DetailChild/DetailAppa
 import DatailComments from "@/components/content/homeChild/DetailChild/DatailComments.vue";
 // 推荐
 import DetailRecommend from "@/components/content/homeChild/DetailChild/DetailRecommend.vue";
+// 底部功能区
+import DetailBottombar from "@/components/content/homeChild/DetailChild/DetailBottombar.vue";
 
 export default {
   name: "Detail",
@@ -47,6 +46,7 @@ export default {
     DetailApparel,
     DatailComments,
     DetailRecommend,
+    DetailBottombar,
   },
   data() {
     return {
@@ -66,6 +66,7 @@ export default {
     this.getIid();
     this.getDetail();
   },
+
   mounted() {
     window.addEventListener("scroll", this.getScroll);
     document.documentElement.scrollTop = 0;
@@ -94,6 +95,34 @@ export default {
         // 获取信息
         this.shopInfo = new DetailShop(res.data.result.shopInfo);
         this.apparel = res.data.result.detailInfo;
+      });
+    },
+    // 向购物车传输数据
+    addToCart() {
+      this.$router.push("/shopping");
+      const cartData = {};
+      cartData.imgSwiper = this.imgSwiper[0];
+      cartData.datas = this.datas;
+      cartData.id = this.id;
+      cartData.count = 0;
+      cartData.isflg = true;
+      // cartData.chooses = true;
+      // 传到vuex--------------------------------
+
+      // 获取到vux里面的数据
+      const vuexData = this.$store.state.dataCart;
+      this.$store.commit("pushs", cartData);
+      // 判断是否有重复的id传输进去
+      vuexData.forEach((value, index, arr) => {
+        // console.log(1);
+        if (value.id == this.id) {
+          value.count++;
+          // 添加到购物车时计算商品价格
+          if (value.count > 1) {
+            this.$store.commit("pops");
+          }
+        }
+        // console.log("++", value.count * (value.datas.realPrice * 1));
       });
     },
     // 获取id值

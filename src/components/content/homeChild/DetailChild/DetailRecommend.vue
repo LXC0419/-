@@ -21,7 +21,8 @@ export default {
     //   this.getrecommendTop();
     // }, 1000);
   },
-  beforeDestroy() {
+
+  beforeUnmount() {
     Bus.$off("apparelImgLod");
   },
   methods: {

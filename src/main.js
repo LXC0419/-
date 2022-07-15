@@ -23,6 +23,6 @@ import 'vant/lib/index.css';
 const app = createApp(App);
 // 配置全局事件总线
 app.config.globalProperties.eventHub = eventHub;
-console.log(eventHub)
+// console.log(eventHub)
 // app.mount('#app');
 // console.log(app.config.globalProperties.eventHub)
